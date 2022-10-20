@@ -20,5 +20,9 @@
   "homepage": "https://github.com/MultiverseLearningProducts/scooter-project-solution#readme",
   "dependencies": {
     "jest": "27.5.1"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {}
 }
