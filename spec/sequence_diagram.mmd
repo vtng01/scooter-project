@@ -1,0 +1,24 @@
+sequenceDiagram
+    actor User
+    actor Scooter
+
+    User ->> ScooterApp: Login
+    activate ScooterApp
+
+    alt Login Successful
+        ScooterApp -->> User: Success login response
+        deactivate ScooterApp
+        User ->> Scooter: rent a scooter
+        activate Scooter
+        Scooter ->> ScooterApp: register to system
+        activate ScooterApp
+        ScooterApp -->> User: Successful renting
+        deactivate ScooterApp
+        Scooter ->> User: assigned to user
+        deactivate Scooter
+
+    else Login Unsuccessful
+        activate ScooterApp
+        ScooterApp ->> User: access denied
+        deactivate ScooterApp
+    end
