@@ -1,6 +1,6 @@
 const User = require('./User')
 
-class Scooter{
+class Scooter {
   // scooter code here
   constructor(station, user) {
     this.station = station
@@ -11,15 +11,13 @@ class Scooter{
     this.user = ''
 
     if (user instanceof User) {
-      if (user.age <= 17){
+      if (user.age <= 17) {
         console.log('Too young to ride a scooter, the minimum age is 18!')
       } else {
         this.user = user
       }
     }
-
   }
-
 
   rent() {
     if (this.isBroken == false && this.charge > 20) {
@@ -33,7 +31,6 @@ class Scooter{
     }
   }
 
-
   dock(station) {
     if (!station) {
       throw 'Docking station required!'
@@ -46,7 +43,7 @@ class Scooter{
   }
 
   distanceLeft() {
-    const distance =  (this.charge / 100) * 32
+    const distance = (this.charge / 100) * 32
     console.log(`This scooter can travel for another ${distance} km`)
     return distance
   }
@@ -70,8 +67,5 @@ class Scooter{
   }
 }
 
-const user = new User('username', 'pw', 19)
-const scooter = new Scooter('Manhattan', user)
-console.log(scooter.charge)
-console.log(scooter.distanceLeft())
+
 module.exports = Scooter
