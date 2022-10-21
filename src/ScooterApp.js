@@ -4,6 +4,8 @@ const Scooter = require('./Scooter')
 class ScooterApp {
   // ScooterApp code here
 
+  static scooterSessions = []
+
   constructor() {
     this.stations = {
       'Manhattan': [],
@@ -14,11 +16,11 @@ class ScooterApp {
     }
 
     this.registeredUsers = []
+    ScooterApp.scooterSessions.push(this)
   }
 
   register(user) {
     if (Object.keys(this.registeredUsers).indexOf(user.username) < 0) {
-
       if (user.age <= 17) {
         console.log('too young to register!')
       } else {
@@ -47,15 +49,16 @@ class ScooterApp {
   }
 
   addScooter(location, scooter) {
+    if (!(scooter instanceof Scooter) || !(typeof location == 'string')) {
+      console.log('Please input valid data types: location (String) and scooter (Scooter)')
+      return
+    }
     scooter.station = location
     this.stations[location].push(scooter)
   }
 
   RemoveScooter(scooterToRemove) {
     const serial = scooterToRemove.serial
-
-    console.log(Object.keys(this.stations))
-    // console.log(this.stations['Manhattan'])
     for (let i = 0; i < Object.keys(this.stations).length; i++) {
       const location = Object.keys(this.stations)[i]
       const lenBefore = this.stations[location].length
@@ -72,22 +75,25 @@ class ScooterApp {
 
 }
 
-// const user1 = new User('username1', 'password', 20)
-// const scooterApp = new ScooterApp()
-// scooterApp.register(user1)
-// scooterApp.register(user1)
-// const user2 = new User("username2", 'password', 8)
-// scooterApp.register(user2)
-// console.log(scooterApp.registeredUsers)
-// scooterApp.logIn("username1", 'password')
-// scooterApp.logIn("username2", 'password')
+const user1 = new User('username1', 'password', 20)
+const scooterApp = new ScooterApp()
+scooterApp.register(user1)
+scooterApp.register(user1)
+const user2 = new User("username2", 'password', 8)
+scooterApp.register(user2)
+console.log(scooterApp.registeredUsers)
+scooterApp.logIn("username1", 'password')
+scooterApp.logIn("username2", 'password')
 
-// const scooter1 = new Scooter('Manhattan', user1)
-// const scooter2 = new Scooter('Queens', user2)
+const scooter1 = new Scooter('Manhattan', user1)
+const scooter2 = new Scooter('Queens', user2)
+// console.log(scooter1 instanceof User)
 // console.log(scooterApp.stations)
-// scooterApp.addScooter('Queens', scooter1)
-// scooterApp.addScooter('Queens', scooter2)
-// console.log(scooterApp.stations)
+scooterApp.addScooter('Queens', scooter1)
+scooterApp.addScooter('Queens', scooter2)
+console.log('hi')
+scooterApp.addScooter(1, scooter1)
+console.log(scooterApp.stations)
 // scooterApp.RemoveScooter(scooter1)
 // console.log(scooterApp.stations)
 
