@@ -14,7 +14,7 @@ describe('scooter methods', () => {
   }
 
 // remove test only later
-  test.only('Serial is between 1 and 1000', () => {
+  test('Serial is between 1 and 1000', () => {
     expect(scooter.serial).toBeGreaterThanOrEqual(1)
     expect(scooter.serial).toBeLessThanOrEqual(1000)
   })

@@ -29,6 +29,7 @@ class Scooter{
     } else {
       this.docked = true
       this.user = ''
+      this.station = station
     }
     return 1
   }
